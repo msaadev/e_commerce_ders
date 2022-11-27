@@ -17,7 +17,10 @@ class API {
     _dio = Dio(_baseOptions);
   }
 
-  Future<Response<T>> get<T>({required String endPoint}) async {
-    return _dio.get<T>(endPoint);
+  Future<Response<T>> get<T>(
+      {required String endPoint, Map<String, dynamic>? queryParameters}) async {
+    var result = await _dio.get<T>(endPoint, queryParameters: queryParameters);
+    print('Result = ${result.data}');
+    return result;
   }
 }
